@@ -1,0 +1,11 @@
+{
+  "name": "ApiBanco",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9",
+    "sucrase": "^3.35.0"
+  }
+}
