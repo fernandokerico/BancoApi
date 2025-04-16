@@ -1,18 +1,24 @@
-// src/controllers/usuarioController.js
-const db = require('../data/database');
+import Usuario from '../models/usuario.js';
 
-module.exports = {
+export default {
   async criar(req, res) {
-    const { nome } = req.body;
+    const { nome, email, cpf } = req.body;
 
     try {
-      const result = await db.query(
-        'INSERT INTO usuarios (nome) VALUES ($1) RETURNING *',
-        [nome]
-      );
-      return res.status(201).json(result.rows[0]);
+      const novoUsuario = await Usuario.create({ nome, email, cpf });
+      return res.status(201).json(novoUsuario);
     } catch (error) {
+      console.error(error);
       return res.status(500).json({ erro: 'Erro ao criar usuário' });
+    }
+  },
+
+  async listar(req, res) {
+    try {
+      const usuarios = await Usuario.findAll();
+      return res.json(usuarios);
+    } catch (error) {
+      return res.status(500).json({ erro: 'Erro ao buscar usuários' });
     }
   }
 };

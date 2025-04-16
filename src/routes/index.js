@@ -1,11 +1,10 @@
-// src/routes/index.js
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import UsuarioController from '../controllers/usuarioController.js';
+import InstituicaoController from '../controllers/instituicaoController.js';
+import ContaController from '../controllers/contaController.js';
+import TransacaoController from '../controllers/transacaoController.js';
 
-const UsuarioController = require('../controllers/usuarioController');
-const InstituicaoController = require('../controllers/instituicaoController');
-const ContaController = require('../controllers/contaController');
-const TransacaoController = require('../controllers/transacaoController');
+const router = express.Router();
 
 // Rotas de instituição
 router.post('/instituicoes', InstituicaoController.criar);
@@ -23,4 +22,4 @@ router.post('/usuarios/:id/transacoes', TransacaoController.criar);
 router.get('/usuarios/:id/saldo', ContaController.saldo);
 router.get('/usuarios/:id/extrato', TransacaoController.extrato);
 
-module.exports = router;
+export default router;
