@@ -1,11 +1,11 @@
 import express from 'express';
 import sequelize from './config/database.js';
-import rotas from './routes/index.js';
+import rotas from './src/routes/index.js';
+
 
 const server = express();
 server.use(express.json());
 
-// Usa todas as rotas agrupadas
 server.use('/', rotas);
 
 server.listen(3000, async () => {
