@@ -1,9 +1,10 @@
-import express from 'express';
-import TransacaoController from '../controllers/transacaoController.js';
+const express = require('express');
+const TransacaoController = require('../controllers/transacaoController');
 
 const router = express.Router();
 
 router.post('/usuarios/:id', TransacaoController.criar);
 router.get('/usuarios/:id/extrato', TransacaoController.extrato);
 
-export default router;
+
+module.exports = router;

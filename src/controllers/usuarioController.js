@@ -1,5 +1,5 @@
-import { Usuario } from '../models/index.js';
-import { cpf as cpfValidator } from 'cpf-cnpj-validator';
+const { Usuario } = require('../../models');
+const { cpf: cpfValidator } = require('cpf-cnpj-validator');
 
 const UsuarioController = {
     async criar(req, res) {
@@ -35,4 +35,4 @@ const UsuarioController = {
     }
 };
 
-export default UsuarioController;
+module.exports = UsuarioController;

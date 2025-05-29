@@ -1,8 +1,8 @@
-import express from 'express';
-import usuarioRoutes from './usuarioRoutes.js';
-import contaRoutes from './contaRoutes.js';
-import transacaoRoutes from './transacaoRoutes.js';
-import instituicaoRoutes from './instituicaoRoutes.js';
+const express = require('express');
+const usuarioRoutes = require('./usuarioRoutes');
+const contaRoutes = require('./contaRoutes');
+const transacaoRoutes = require('./transacaoRoutes');
+const instituicaoRoutes = require('./instituicaoRoutes');
 
 const router = express.Router();
 
@@ -11,4 +11,4 @@ router.use('/contas', contaRoutes);
 router.use('/transacoes', transacaoRoutes);
 router.use('/instituicoes', instituicaoRoutes);
 
-export default router;
+module.exports = router;

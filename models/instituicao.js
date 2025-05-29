@@ -1,5 +1,5 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database.js';
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/database');
 
 class Instituicao extends Model {
   static associate(models) {
@@ -21,4 +21,4 @@ Instituicao.init({
   modelName: 'Instituicao',
 });
 
-export default Instituicao;
+module.exports =  Instituicao;

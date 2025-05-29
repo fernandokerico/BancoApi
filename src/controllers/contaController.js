@@ -1,4 +1,4 @@
-import { Conta, Usuario, Instituicao } from '../models/index.js';
+const { Conta, Usuario, Instituicao } = require('../../models');
 
 const ContaController = {
     async criar(req, res) {
@@ -46,4 +46,4 @@ const ContaController = {
     }
 };
 
-export default ContaController;
+module.exports = ContaController;

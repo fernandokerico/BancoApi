@@ -1,4 +1,4 @@
-import { Transacao, Conta } from '../models/index.js';
+const { Transacao, Conta } = require('../../models');
 
 const TransacaoController = {
     async criar(req, res) {
@@ -46,4 +46,4 @@ const TransacaoController = {
     }
 };
 
-export default TransacaoController;
+module.exports = TransacaoController;

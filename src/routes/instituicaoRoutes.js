@@ -1,5 +1,5 @@
-import express from 'express';
-import InstituicoesController from '../controllers/instituicoesController.js';
+const express = require('express');
+const InstituicoesController = require('../controllers/instituicoesController');
 
 const router = express.Router();
 
@@ -9,4 +9,5 @@ router.get('/:id', InstituicoesController.buscarPorId);
 router.put('/:id', InstituicoesController.atualizar);
 router.delete('/:id', InstituicoesController.remover);
 
-export default router;
+
+module.exports = router;

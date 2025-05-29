@@ -1,6 +1,6 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database.js';
-import Conta from './conta.js';
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/database');
+const Conta = require('./conta');
 
 class Transacao extends Model {
   static associate(models) {
@@ -40,4 +40,4 @@ Transacao.init({
 Conta.hasMany(Transacao, { foreignKey: 'contaId', as: 'transacoes' });
 Transacao.belongsTo(Conta, { foreignKey: 'contaId', as: 'conta' });
 
-export default Transacao;
+module.exports = Transacao;

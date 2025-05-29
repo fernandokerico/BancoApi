@@ -1,19 +1,19 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database.js';
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/database');
 
 class Conta extends Model {
   static associate(models) {
-    Conta.belongsTo(models.Usuario, {
+    this.belongsTo(models.Usuario, {
       foreignKey: 'usuarioCpf',
       as: 'usuario',
     });
 
-    Conta.belongsTo(models.Instituicao, {
+    this.belongsTo(models.Instituicao, {
       foreignKey: 'instituicaoId',
       as: 'instituicao',
     });
 
-    Conta.hasMany(models.Transacao, {
+    this.hasMany(models.Transacao, {
       foreignKey: 'contaId',
       as: 'transacoes',
     });
@@ -27,21 +27,17 @@ Conta.init({
   },
   usuarioCpf: {
     type: DataTypes.STRING,
-    references: {
-      model: 'Usuarios',
-      key: 'cpf',
-    },
+    allowNull: false,
   },
   instituicaoId: {
     type: DataTypes.INTEGER,
-    references: {
-      model: 'Instituicoes',
-      key: 'id',
-    },
+    allowNull: false,
   },
 }, {
   sequelize,
   modelName: 'Conta',
+  tableName: 'Contas',
+  timestamps: true,
 });
 
-export default Conta;
+module.exports = Conta;

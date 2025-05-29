@@ -1,19 +1,22 @@
-import express from 'express';
-import sequelize from './config/database.js';
-import rotas from './src/routes/index.js';
+const express = require('express');
+const sequelize = require('./config/database');
+const routes = require('./src/routes');
 
+const app = express();
+app.use(express.json());
+app.use('/', routes);
 
-const server = express();
-server.use(express.json());
+const PORT = 3000;
 
-server.use('/', rotas);
-
-server.listen(3000, async () => {
+(async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    console.log('Servidor rodando e conectado ao banco na porta 3000!');
+
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando e conectado ao banco na porta ${PORT}`);
+    });
   } catch (error) {
     console.error('Erro ao conectar no banco:', error);
   }
-});
+})();
