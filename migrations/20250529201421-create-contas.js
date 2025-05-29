@@ -10,25 +10,28 @@ module.exports = {
       },
       saldo: {
         type: Sequelize.FLOAT,
-        defaultValue: 0
+        allowNull: false,
+        defaultValue: 0.0
       },
-      usuarioId: {
-        type: Sequelize.INTEGER,
+      usuarioCpf: {
+        type: Sequelize.STRING,
+        allowNull: false,
         references: {
           model: 'Usuarios',
-          key: 'id'
+          key: 'cpf'
         },
-        onDelete: 'CASCADE',
-        allowNull: false
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       instituicaoId: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: 'Instituicoes',
           key: 'id'
         },
-        onDelete: 'CASCADE',
-        allowNull: false
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,

@@ -1,14 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/database');
 
-class Usuario extends Model {
-  static associate(models) {
-    this.hasMany(models.Conta, {
-      foreignKey: 'usuarioCpf',
-      as: 'contas',
-    });
-  }
-}
+class Usuario extends Model {}
 
 Usuario.init({
   cpf: {
