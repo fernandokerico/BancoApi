@@ -32,6 +32,47 @@ const UsuarioController = {
         } catch (err) {
             return res.status(500).json({ erro: 'Erro ao buscar usuários' });
         }
+    },
+
+    async buscarPorCpf(req, res) {
+        try {
+            const cpf = req.params.cpf.replace(/\D/g, '');
+
+            if (!cpfValidator.isValid(cpf)) {
+                return res.status(400).json({ erro: 'CPF inválido' });
+            }
+
+            const usuario = await Usuario.findByPk(cpf);
+
+            if (!usuario) {
+                return res.status(404).json({ erro: 'Usuário não encontrado' });
+            }
+
+            return res.status(200).json(usuario);
+        } catch (err) {
+            return res.status(500).json({ erro: 'Erro ao buscar usuário' });
+        }
+    },
+
+    async deletar(req, res) {
+        try {
+            const cpf = req.params.cpf.replace(/\D/g, '');
+
+            if (!cpfValidator.isValid(cpf)) {
+                return res.status(400).json({ erro: 'CPF inválido' });
+            }
+
+            const usuario = await Usuario.findByPk(cpf);
+
+            if (!usuario) {
+                return res.status(404).json({ erro: 'Usuário não encontrado' });
+            }
+
+            await usuario.destroy();
+            return res.status(204).send();
+        } catch (err) {
+            return res.status(500).json({ erro: 'Erro ao deletar usuário' });
+        }
     }
 };
 

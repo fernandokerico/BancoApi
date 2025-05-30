@@ -2,27 +2,27 @@ const { Instituicao } = require('../../models');
 
 module.exports = {
     async cadastrar(req, res) {
-        try {
-            const { nome, cnpj } = req.body;
+    try {
+        const { nome } = req.body;
 
-            if (!nome || !cnpj) {
-                return res.status(400).json({ erro: 'Nome e CNPJ são obrigatórios.' });
-            }
-
-            const instituicaoExiste = await Instituicao.findOne({ where: { cnpj } });
-
-            if (instituicaoExiste) {
-                return res.status(409).json({ erro: 'Instituição com esse CNPJ já existe.' });
-            }
-
-            const novaInstituicao = await Instituicao.create({ nome, cnpj });
-
-            return res.status(201).json(novaInstituicao);
-
-        } catch (error) {
-            return res.status(500).json({ erro: 'Erro ao cadastrar instituição', detalhe: error.message });
+        if (!nome) {
+            return res.status(400).json({ erro: 'Nome é obrigatório.' });
         }
-    },
+
+        const instituicaoExiste = await Instituicao.findOne({ where: { nome } });
+
+        if (instituicaoExiste) {
+            return res.status(409).json({ erro: 'Instituição com esse nome já existe.' });
+        }
+
+        const novaInstituicao = await Instituicao.create({ nome });
+
+        return res.status(201).json(novaInstituicao);
+
+    } catch (error) {
+        return res.status(500).json({ erro: 'Erro ao cadastrar instituição', detalhe: error.message });
+    }
+},
 
     async listarTodas(req, res) {
         try {
